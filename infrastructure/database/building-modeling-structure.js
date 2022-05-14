@@ -1,10 +1,10 @@
 const {USER_REGISTRATION_MODEL} = require("./model/user-model/user-registration-model" );
 
-const sequelize = require('../configuration/connect-database' );
+const sequelize = require('../configuration/connect-db' );
 
-const dataBase = {};
+const db = {};
 
 
-dataBase.sequelize = sequelize;
+db.sequelize = sequelize;
 
-module.exports = dataBase;
+module.exports = db;

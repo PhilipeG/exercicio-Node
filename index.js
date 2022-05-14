@@ -1,8 +1,8 @@
 const express = require('express');
-const sequelize = require('./infrastructure/configuration/connect-database');
+const sequelize = require('./infrastructure/configuration/connect-db');
 const router = require('../projeto-nodejs-iblue/routes/routes')
 const path = require('path');
-const { USER_REGISTRATION_MODEL } = require('./infrastructure/database/model/user-model/user-registration-model');
+const { USER_REGISTRATION_MODEL } = require('./infrastructure/db/model/user-model/user-registration-model');
 
 
 const app = express();

@@ -1,5 +1,5 @@
 const httpStatusResponse = require("../../../commons/http-response/http-status-response");
-const modelUser = require("../../database/model/user-model/user-registration-model").USER_REGISTRATION_MODEL;
+const modelUser = require("../../db/model/user-model/user-registration-model").USER_REGISTRATION_MODEL;
 const userRegistrationRepository = async() => {
 try {
 const returnQueryUser = await modelUser.findAll();

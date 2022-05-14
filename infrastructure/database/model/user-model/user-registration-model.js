@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../../configuration/connect-database');
+const sequelize = require('../../../configuration/connect-db');
 
 const USER_REGISTRATION_MODEL = sequelize.define('USER_REGISTRATION_MODEL', {
     id: {
@@ -13,7 +13,7 @@ const USER_REGISTRATION_MODEL = sequelize.define('USER_REGISTRATION_MODEL', {
         type: DataTypes.STRING(165),
         unique: false,
         allowNull: false,
-        comment: "Coluna destinado a registrar o nome do usuário."
+        comment: "Coluna para registrar o nome do usuário"
     },
 });
 module.exports = {
