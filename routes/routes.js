@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express();
-const connectToDatabase = require('../infrastructure/db/db');
+const connectToDatabase = require('../infrastructure/database/db');
 
 
 
 router.get('/', async (req, res, next) => {
     try {
         const docs = await connectToDatabase.findAll();
-        res.render('index', { title: 'Lista de Pessoas', docs });
+        res.render('index', { titulo: "Pessoas", docs });
     } catch (err) {
         next(err);
     }
@@ -15,15 +15,15 @@ router.get('/', async (req, res, next) => {
 
 
 router.get('/new', (req, res, next) => {
-    res.render('new', { title: 'Novo Cadastro de Pessoa' });
+    res.render('new', { titulo: "Cadastro pessoa" });
 });
 
 router.post('/new', async (req, res, next) => {
-    const name = req.body.name;
-    const dateOfBithday = req.body.dateOfBithday;
+    const nome = req.body.nome;
+    const dataNasc = req.body.dataNasc;
 
     try {
-        const result = await connectToDatabase.insert({ name, dateOfBithday });
+        const result = await connectToDatabase.insert({ nome, dataNasc });
         console.log(result);
         res.redirect('/');
     } catch (err) {
@@ -32,7 +32,7 @@ router.post('/new', async (req, res, next) => {
 })
 
 router.get('/new', (req, res, next) => {
-    res.render('new', { title: 'Novo Cadastro', doc: {"name":"","dateOfBithday":""}, action: '/new' });
+    res.render('new', { titulo: "Novo cadastro", doc: {"nome":"","datanasc":""}, action: '/new' });
   });
 
 router.get('/edit/:id', async (req, res, next) => {
@@ -40,7 +40,7 @@ router.get('/edit/:id', async (req, res, next) => {
   
     try {
       const doc = await connectToDatabase.findOne(id);
-      res.render('new', { title: 'Edição de Pessoa', doc, action: '/edit/' + doc._id });
+      res.render('new', { titulo: "Edição de pessoa", doc, action: '/edit/' + doc._id });
     } catch (err) {
       next(err);
     }
@@ -48,11 +48,11 @@ router.get('/edit/:id', async (req, res, next) => {
 
 router.post('/edit/:id', async (req, res) => {
     const id = req.params.id;
-    const name = req.body.name;
-    const dateOfBithday = req.body.dateOfBithday;
+    const nome = req.body.nome;
+    const datanasc = req.body.datanasc;
   
     try {
-      const result = await connectToDatabase.update(id, { name, dateOfBithday });
+      const result = await connectToDatabase.update(id, { nome, datanasc });
       console.log(result);
       res.redirect('/');
     } catch (err) {
